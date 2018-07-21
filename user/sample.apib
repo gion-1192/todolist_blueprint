@@ -1,0 +1,39 @@
+FORMAT: 1A
+HOST: https//api.example.com
+
+# Group User
+
+# /user/login
+
+### ログイン処理用[GET]
+* ユーザーのログイン判定
+* ログイン成功なら、アクセストークンを返す
+
++ Request (application/json)
+  + Attributes
+        + email: test@example.com (string, required) - メールアドレス（format: email）
+        + password: abc123 (string, required) - パスワード（pattern: ^[0-9A-Za-z]{6,16}$）
+	
++ Response 200 (application/json)
+
+ + Attributes (array[Question])
+
++ Response 401 (application/json)
+
+ + Attributes (array[Error])
+
+## Data Structures
+
+### Question
++ question: Favourite programming language? (required)
++ published_at: `2014-11-11T08:40:51.620Z` (required)
++ url: /questions/1 (required)
++ choices (array[Choice], required)
+
+### Choice
++ choice: Javascript (required)
++ url: /questions/1/choices/1 (required)
++ votes: 2048 (number, required)
+
+### Error
++ message: login_error
